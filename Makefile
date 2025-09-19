@@ -3,6 +3,8 @@
 
 COMPOSE_PATH=./compose.yml
 
+IMAGE_VERSION := $(shell git rev-parse --short HEAD)
+
 # Colors
 RED     := $(shell tput -Txterm setaf 1)
 GREEN   := $(shell tput -Txterm setaf 2)
@@ -14,6 +16,14 @@ RESET   := $(shell tput -Txterm sgr0)
 
 run: setup-env docker-start ## Setup environment, start containers and run spring application
 	@./mvnw spring-boot:run
+
+test:
+	@./mvnw clean test
+
+## Build
+
+image-build: ## Build the project image
+	@docker build . -t ghcr.io/theproject-id/sinah-backend:$(IMAGE_VERSION)
 
 ## Docker
 
