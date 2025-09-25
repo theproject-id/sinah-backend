@@ -22,19 +22,13 @@ public class RefreshTokenService {
     }
 
     public RefreshTokenDTO generateToken(UUID userUUID) {
-        UUID uuid = UUID.randomUUID();
-        Instant expiresAt = Instant.now().plus(7, ChronoUnit.DAYS);
-        byte[] randomBytes = KeyGenerators.secureRandom(32).generateKey();
-        String token = Base64.getUrlEncoder().withoutPadding().encodeToString(randomBytes);
+        var uuid = UUID.randomUUID();
+        var expiresAt = Instant.now().plus(7, ChronoUnit.DAYS);
+        var randomBytes = KeyGenerators.secureRandom(32).generateKey();
+        var token = Base64.getUrlEncoder().withoutPadding().encodeToString(randomBytes);
 
-        var refreshToken = new RefreshTokenModel();
-        refreshToken.setUuid(uuid);
-        refreshToken.setToken(token);
-        refreshToken.setIssuedAt(Instant.now());
-        refreshToken.setExpiresAt(expiresAt);
-        refreshToken.setUserUuid(userUUID);
-        var savedRefreshToken = refreshTokenRepository.save(refreshToken);
-
+        var refreshTokenModel = new RefreshTokenModel(uuid, token, userUUID, Instant.now(), expiresAt);
+        var savedRefreshToken = refreshTokenRepository.save(refreshTokenModel);
         return RefreshTokenMapper.toDTO(savedRefreshToken);
     }
 }

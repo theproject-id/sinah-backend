@@ -31,6 +31,17 @@ public class RefreshTokenModel {
     @Column(nullable = false)
     private Instant expiresAt;
 
+    public RefreshTokenModel() {
+    }
+
+    public RefreshTokenModel(UUID uuid, String token, UUID userUuid, Instant issuedAt, Instant expiresAt) {
+        this.uuid = uuid;
+        this.token = token;
+        this.userUuid = userUuid;
+        this.issuedAt = issuedAt;
+        this.expiresAt = expiresAt;
+    }
+
     public Long getId() {
         return id;
     }
