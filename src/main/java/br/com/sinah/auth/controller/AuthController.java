@@ -2,7 +2,9 @@ package br.com.sinah.auth.controller;
 
 import br.com.sinah.auth.dto.LoginRequestDTO;
 import br.com.sinah.auth.dto.LoginResponseDTO;
+import br.com.sinah.auth.dto.RefreshTokenResponseDTO;
 import br.com.sinah.auth.service.AuthService;
+import br.com.sinah.auth.service.RefreshTokenService;
 import br.com.sinah.user.dto.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -15,8 +17,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
+    private final RefreshTokenService refreshTokenService;
+
+    public AuthController(AuthService authService, RefreshTokenService refreshTokenService) {
         this.authService = authService;
+        this.refreshTokenService = refreshTokenService;
     }
 
     @PostMapping(
@@ -25,7 +30,17 @@ public class AuthController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginRequestDTO loginRequestDTO) {
-        return ResponseEntity.ok(authService.login(loginRequestDTO));
+        var response = authService.login(loginRequestDTO);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(
+            value = "/refresh-token",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<RefreshTokenResponseDTO> refresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
+        var response = refreshTokenService.refreshToken(refreshToken);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(
@@ -33,6 +48,7 @@ public class AuthController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<UserDTO> me() {
-        return ResponseEntity.ok(authService.authenticate());
+        var response = authService.authenticate();
+        return ResponseEntity.ok(response);
     }
 }

@@ -10,9 +10,10 @@ import br.com.sinah.user.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -49,9 +50,8 @@ public class AuthService {
 
     public UserDTO authenticate() {
         var authenticationToken = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        var credentials = (Jwt) authenticationToken.getCredentials();
-        
-        var user = userService.loadUserByUsername(credentials.getClaim("email"));
+        var token = authenticationToken.getToken();
+        var user = userService.loadUserByUUID(UUID.fromString(token.getSubject()));
         return UserMapper.toDTO(user);
     }
 }
