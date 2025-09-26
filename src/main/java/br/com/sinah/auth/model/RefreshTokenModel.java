@@ -31,6 +31,9 @@ public class RefreshTokenModel {
     @Column(nullable = false)
     private Instant expiresAt;
 
+    @Column
+    private boolean revoked;
+
     public RefreshTokenModel() {
     }
 
@@ -88,5 +91,13 @@ public class RefreshTokenModel {
 
     public void setExpiresAt(Instant expiresAt) {
         this.expiresAt = expiresAt;
+    }
+
+    public boolean isRevoked() {
+        return revoked;
+    }
+
+    public void setRevoked(boolean revoked) {
+        this.revoked = revoked;
     }
 }
