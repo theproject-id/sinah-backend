@@ -30,15 +30,14 @@ public class JwtManager {
         Instant now = Instant.now();
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
-                .id(UUID.randomUUID().toString())
+                .id(refreshTokenUUID.toString())
                 .issuer(jwtProperties.getIssuerValidator())
                 .issuedAt(now)
+                .expiresAt(now.plus(jwtProperties.getAccessTokenTtl()))
                 .audience(new ArrayList<>() {{
                     add(jwtProperties.getAudienceValidator());
                 }})
-                .claim("username", user.getUsername())
-                .claim("email", user.getEmail())
-                .claim("rt", refreshTokenUUID)
+                .subject(user.getUuid().toString())
                 .claim(JWT_ROLE_NAME, user.getRole())
                 .build();
 
