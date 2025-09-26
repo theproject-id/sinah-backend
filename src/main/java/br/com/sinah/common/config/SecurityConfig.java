@@ -44,9 +44,12 @@ public class SecurityConfig {
                         // Auth routes
                         .requestMatchers(
                                 "/api/v1/auth/login",
-                                "/api/v1/auth/me",
+                                "/api/v1/auth/refresh-token",
                                 "/api/v1/auth/logout"
                         ).permitAll()
+
+                        // Auth routes
+                        .requestMatchers("/api/v1/auth/me").authenticated()
 
                         // User routes (admin only)
                         .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
@@ -78,7 +81,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedHeaders(List.of("Content-Type", "Authorization"));
+        config.setAllowedHeaders(List.of("Content-Type", "Authorization", "X-Refresh-Token"));
         config.setAllowedOrigins(List.of(allowedOrigin));
         config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         config.setExposedHeaders(List.of("Set-Cookie"));
