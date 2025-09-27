@@ -1,5 +1,6 @@
 package br.com.sinah.notification.service;
 
+import br.com.sinah.common.exception.NotFoundException;
 import br.com.sinah.notification.dto.NotificationRequestDTO;
 import br.com.sinah.notification.dto.NotificationResponseDTO;
 import br.com.sinah.notification.mapper.NotificationMapper;
@@ -31,9 +32,9 @@ public class NotificationService {
 
     public NotificationResponseDTO create(NotificationRequestDTO dto) {
         var ward = wardRepository.findById(dto.wardId())
-                .orElseThrow(() -> new EntityNotFoundException("Ward not found"));
+                .orElseThrow(() -> new NotFoundException("Ward not found"));
         var patient = patientRepository.findById(dto.patientId())
-                .orElseThrow(() -> new EntityNotFoundException("Patient not found"));
+                .orElseThrow(() -> new NotFoundException("Patient not found"));
         NotificationModel model = NotificationMapper.toModel(dto,ward,patient);
         NotificationModel saved = notificationRepository.save(model);
         return NotificationMapper.toDTO(saved);
@@ -48,16 +49,16 @@ public class NotificationService {
     public NotificationResponseDTO findById(UUID id) {
         return notificationRepository.findById(id)
                 .map(NotificationMapper::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Notification not found"));
+                .orElseThrow(() -> new NotFoundException("Notification not found"));
     }
 
     public NotificationResponseDTO update(UUID id, NotificationRequestDTO dto) {
         NotificationModel model = notificationRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Notification not found"));
+                .orElseThrow(() -> new NotFoundException("Notification not found"));
         var ward = wardRepository.findById(dto.wardId())
-                .orElseThrow(() -> new EntityNotFoundException("Ward not found"));
+                .orElseThrow(() -> new NotFoundException("Ward not found"));
         var patient = patientRepository.findById(dto.patientId())
-                .orElseThrow(() -> new EntityNotFoundException("Patient not found"));
+                .orElseThrow(() -> new NotFoundException("Patient not found"));
         var requestUpdated = NotificationMapper.toUpdate(model,ward,patient,dto);
         NotificationModel updated = notificationRepository.save(requestUpdated);
         return  NotificationMapper.toDTO(updated);
@@ -65,7 +66,7 @@ public class NotificationService {
 
     public void delete(UUID id) {
         if (!notificationRepository.existsById(id)) {
-            throw new EntityNotFoundException("Notification not found");
+            throw new NotFoundException("Notification not found");
         }
         notificationRepository.deleteById(id);
     }
