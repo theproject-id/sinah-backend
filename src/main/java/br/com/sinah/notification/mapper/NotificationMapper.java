@@ -28,15 +28,15 @@ public class NotificationMapper {
         );
     }
 
-    public static NotificationModel toModel(NotificationRequestDTO request) {
+    public static NotificationModel toModel(NotificationRequestDTO request, WardModel ward, PatientModel patient) {
         return new NotificationModel(
                 null,
                 null,
                 request.notificationType(),
                 request.notificationDate(),
                 request.status(),
-                new WardModel(request.wardId()),
-                new PatientModel(request.patientId()),
+                ward,
+                patient,
                 request.description(),
                 request.microorganism(),
                 request.resistance(),
@@ -46,5 +46,20 @@ public class NotificationMapper {
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
+    }
+
+    public static NotificationModel toUpdate(NotificationModel model, WardModel ward,PatientModel patient,NotificationRequestDTO dto) {
+        model.setNotificationType(dto.notificationType());
+        model.setNotificationDate(dto.notificationDate());
+        model.setStatus(dto.status());
+        model.setAla(ward);
+        model.setPatient(patient);
+        model.setDescription(dto.description());
+        model.setMicroorganism(dto.microorganism());
+        model.setResistance(dto.resistance());
+        model.setInfectionOrigin(dto.infectionOrigin());
+        model.setLocalInfection(dto.localInfection());
+        model.setResponsibleUser(dto.responsibleUser());
+        return model;
     }
 }

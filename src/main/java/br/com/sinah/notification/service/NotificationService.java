@@ -34,7 +34,7 @@ public class NotificationService {
                 .orElseThrow(() -> new EntityNotFoundException("Ward not found"));
         var patient = patientRepository.findById(dto.patientId())
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found"));
-        NotificationModel model = NotificationMapper.toModel(dto);
+        NotificationModel model = NotificationMapper.toModel(dto,ward,patient);
         NotificationModel saved = notificationRepository.save(model);
         return NotificationMapper.toDTO(saved);
     }
@@ -54,27 +54,13 @@ public class NotificationService {
     public NotificationResponseDTO update(UUID id, NotificationRequestDTO dto) {
         NotificationModel model = notificationRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Notification not found"));
-
         var ward = wardRepository.findById(dto.wardId())
                 .orElseThrow(() -> new EntityNotFoundException("Ward not found"));
-
         var patient = patientRepository.findById(dto.patientId())
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found"));
-
-        model.setNotificationType(dto.notificationType());
-        model.setNotificationDate(dto.notificationDate());
-        model.setStatus(dto.status());
-        model.setAla(ward);
-        model.setPatient(patient);
-        model.setDescription(dto.description());
-        model.setMicroorganism(dto.microorganism());
-        model.setResistance(dto.resistance());
-        model.setInfectionOrigin(dto.infectionOrigin());
-        model.setLocalInfection(dto.localInfection());
-        model.setResponsibleUser(dto.responsibleUser());
-
-        NotificationModel updated = notificationRepository.save(model);
-        return NotificationMapper.toDTO(updated);
+        var requestUpdated = NotificationMapper.toUpdate(model,ward,patient,dto);
+        NotificationModel updated = notificationRepository.save(requestUpdated);
+        return  NotificationMapper.toDTO(updated);
     }
 
     public void delete(UUID id) {
