@@ -20,6 +20,12 @@ run: docker-start ## Setup environment, start containers and run spring applicat
 test:
 	@./mvnw clean test
 
+fmt:
+	@./mvnw spotless:apply
+
+lint:
+	@./mvnw spotless:check
+
 ## Build
 
 image-build: ## Build the project image
