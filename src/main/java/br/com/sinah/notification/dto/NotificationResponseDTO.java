@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record NotificationResponseDTO(
-        UUID id,
+        UUID uuid,
         NotificationType notificationType,
         LocalDateTime notificationDate,
         NotificationStatus status,

@@ -23,8 +23,7 @@ public class NotificationService {
 
     public NotificationService(NotificationRepository notificationRepository,
                                WardRepository wardRepository,
-                               PatientRepository patientRepository,
-                               NotificationMapper notificationMapper) {
+                               PatientRepository patientRepository) {
         this.notificationRepository = notificationRepository;
         this.wardRepository = wardRepository;
         this.patientRepository = patientRepository;

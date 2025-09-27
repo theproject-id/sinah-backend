@@ -1,3 +1,15 @@
+CREATE TABLE wards (
+    id                  BIGINT GENERATED ALWAYS AS IDENTITY,
+    uuid                UUID PRIMARY KEY UNIQUE NOT NULL,
+    created_at          TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at          TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE patients (
+    id                  BIGINT GENERATED ALWAYS AS IDENTITY,
+    uuid                UUID PRIMARY KEY UNIQUE NOT NULL,
+    created_at          TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at          TIMESTAMP NOT NULL DEFAULT now()
+);
 CREATE TABLE notifications (
     id                  BIGINT GENERATED ALWAYS AS IDENTITY,
     uuid                UUID PRIMARY KEY UNIQUE NOT NULL,
@@ -23,3 +35,4 @@ CREATE TABLE notifications (
         FOREIGN KEY (patient_uuid) REFERENCES patients(uuid)
         ON DELETE RESTRICT
 );
+
