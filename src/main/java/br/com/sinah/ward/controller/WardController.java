@@ -82,4 +82,5 @@ public class WardController {
         wardService.deleteByUuid(uuid);
         return ResponseEntity.noContent().build();
     }
+
 }

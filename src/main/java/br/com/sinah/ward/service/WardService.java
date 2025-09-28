@@ -43,4 +43,5 @@ public class WardService {
         var updated = WardMapper.toUpdate(find,dto);
         return  WardMapper.toDTO(this.wardRepository.save(updated));
     }
+
 }
