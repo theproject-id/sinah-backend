@@ -34,8 +34,7 @@ public class RefreshTokenModel {
     @Column
     private boolean revoked;
 
-    public RefreshTokenModel() {
-    }
+    public RefreshTokenModel() {}
 
     public RefreshTokenModel(UUID uuid, String token, UUID userUuid, Instant issuedAt, Instant expiresAt) {
         this.uuid = uuid;

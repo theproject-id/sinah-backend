@@ -1,6 +1,7 @@
 package br.com.sinah.auth.repository;
 
 import br.com.sinah.auth.model.RefreshTokenModel;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

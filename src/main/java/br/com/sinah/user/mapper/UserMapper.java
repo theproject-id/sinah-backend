@@ -13,7 +13,6 @@ public class UserMapper {
                 model.getEmail(),
                 model.getRole(),
                 model.getCreatedAt(),
-                model.getUpdatedAt()
-        );
+                model.getUpdatedAt());
     }
 }

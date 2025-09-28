@@ -1,6 +1,5 @@
 package br.com.sinah.common.jwt;
 
-
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
@@ -30,15 +29,15 @@ public class JwtConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        var decoder = NimbusJwtDecoder.withPublicKey(rsaKeysProperty.getPublicKey()).build();
+        var decoder =
+                NimbusJwtDecoder.withPublicKey(rsaKeysProperty.getPublicKey()).build();
         decoder.setJwtValidator(tokenValidator());
         return decoder;
     }
 
     @Bean
     public JwtEncoder jwtEncoder() {
-        var jwk = new RSAKey
-                .Builder(rsaKeysProperty.getPublicKey())
+        var jwk = new RSAKey.Builder(rsaKeysProperty.getPublicKey())
                 .privateKey(rsaKeysProperty.getPrivateKey())
                 .build();
 
@@ -61,8 +60,7 @@ public class JwtConfig {
         var validators = Arrays.asList(
                 new JwtTimestampValidator(),
                 new JwtIssuerValidator(jwtProperties.getIssuerValidator()),
-                new JwtAudienceValidator(jwtProperties.getAudienceValidator())
-        );
+                new JwtAudienceValidator(jwtProperties.getAudienceValidator()));
         return new DelegatingOAuth2TokenValidator<>(validators);
     }
 }

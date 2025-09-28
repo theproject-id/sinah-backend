@@ -1,6 +1,7 @@
 package br.com.sinah.common.jwt;
 
 import br.com.sinah.user.model.UserModel;
+
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
@@ -34,9 +35,11 @@ public class JwtManager {
                 .issuer(jwtProperties.getIssuerValidator())
                 .issuedAt(now)
                 .expiresAt(now.plus(jwtProperties.getAccessTokenTtl()))
-                .audience(new ArrayList<>() {{
-                    add(jwtProperties.getAudienceValidator());
-                }})
+                .audience(new ArrayList<>() {
+                    {
+                        add(jwtProperties.getAudienceValidator());
+                    }
+                })
                 .subject(user.getUuid().toString())
                 .claim(JWT_ROLE_NAME, user.getRole())
                 .build();

@@ -9,6 +9,7 @@ import br.com.sinah.common.exception.NotFoundException;
 import br.com.sinah.common.exception.UnauthorizedException;
 import br.com.sinah.common.jwt.JwtManager;
 import br.com.sinah.user.service.UserService;
+
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +29,7 @@ public class RefreshTokenService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     public RefreshTokenService(
-            JwtManager jwtManager,
-            UserService userService,
-            RefreshTokenRepository refreshTokenRepository
-    ) {
+            JwtManager jwtManager, UserService userService, RefreshTokenRepository refreshTokenRepository) {
         this.jwtManager = jwtManager;
         this.userService = userService;
         this.refreshTokenRepository = refreshTokenRepository;
@@ -51,9 +49,9 @@ public class RefreshTokenService {
 
     @Transactional
     public RefreshTokenResponseDTO refreshToken(String token) {
-        var refresh = refreshTokenRepository.findByToken(token).orElseThrow(
-                () -> new NotFoundException("Invalid refresh token")
-        );
+        var refresh = refreshTokenRepository
+                .findByToken(token)
+                .orElseThrow(() -> new NotFoundException("Invalid refresh token"));
 
         if (refresh.isRevoked() || refresh.getExpiresAt().isBefore(Instant.now())) {
             throw new UnauthorizedException("Expired or revoked refresh token");

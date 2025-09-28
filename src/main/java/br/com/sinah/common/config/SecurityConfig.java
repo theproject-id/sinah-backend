@@ -1,6 +1,7 @@
 package br.com.sinah.common.config;
 
 import br.com.sinah.user.service.UserService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,42 +32,35 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors
-                        .configurationSource(corsConfigurationSource())
-                )
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
                         // Options HTTP
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**")
+                        .permitAll()
 
                         // Public routes
-                        .requestMatchers(HttpMethod.GET, "/api/v1/ping").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/ping")
+                        .permitAll()
 
                         // Auth routes
-                        .requestMatchers(
-                                "/api/v1/auth/login",
-                                "/api/v1/auth/refresh-token",
-                                "/api/v1/auth/logout"
-                        ).permitAll()
+                        .requestMatchers("/api/v1/auth/login", "/api/v1/auth/refresh-token", "/api/v1/auth/logout")
+                        .permitAll()
 
                         // Auth routes
-                        .requestMatchers("/api/v1/auth/me").authenticated()
+                        .requestMatchers("/api/v1/auth/me")
+                        .authenticated()
 
                         // User routes (admin only)
-                        .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
-
-                        .anyRequest().denyAll()
-                )
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(Customizer.withDefaults())
-                )
+                        .requestMatchers("/api/v1/users/**")
+                        .hasRole("ADMIN")
+                        .anyRequest()
+                        .denyAll())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(
-            UserService userService,
-            PasswordEncoder passwordEncoder
-    ) {
+    public AuthenticationManager authenticationManager(UserService userService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userService);
         provider.setPasswordEncoder(passwordEncoder);
         return new ProviderManager(provider);

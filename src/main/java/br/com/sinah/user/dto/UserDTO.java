@@ -11,6 +11,4 @@ public record UserDTO(
         String email,
         String role,
         Instant createdAt,
-        Instant updatedAt
-) {
-}
+        Instant updatedAt) {}

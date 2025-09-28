@@ -7,6 +7,5 @@ import org.springframework.test.context.ActiveProfiles;
 class SinahApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
+    void contextLoads() {}
 }
