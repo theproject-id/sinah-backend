@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
 public class NotificationService {
 
     private final NotificationRepository notificationRepository;
+
     private final WardRepository wardRepository;
+
     private final PatientRepository patientRepository;
 
     public NotificationService(

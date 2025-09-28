@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "notifications")
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "notifications")
 public class NotificationModel {
     @Column(unique = true, insertable = false, updatable = false, columnDefinition = "serial")
     private Long id;
@@ -29,21 +29,21 @@ public class NotificationModel {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private NotificationType notificationType; // IRA ou RM
+    private NotificationType notificationType;
 
-    @Column(name = "notification_date", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime notificationDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private NotificationStatus status; // Suspeita, Confirmada, Descartada
+    private NotificationStatus status;
 
     @ManyToOne
     @JoinColumn(name = "ward_uuid", nullable = false)
     private WardModel ala;
 
     @ManyToOne
-    @JoinColumn(name = "patient_uuid", nullable = false)
+    @JoinColumn(nullable = false)
     private PatientModel patient;
 
     @Column(columnDefinition = "TEXT")
@@ -55,28 +55,18 @@ public class NotificationModel {
     @Column
     private String resistance;
 
-    @Column(name = "infection_origin")
+    @Column
     @Enumerated(EnumType.STRING)
     private InfectionOrigin infectionOrigin;
 
-    @Column(name = "local_infection")
+    @Column
     private String localInfection;
 
     private String responsibleUser;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(nullable = false, updatable = false)
     private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }

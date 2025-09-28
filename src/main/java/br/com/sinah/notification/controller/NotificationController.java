@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Notificações", description = "Operações relacionadas às notificações do sistema")
 @RestController
 @RequestMapping("api/notifications")
+@Tag(name = "Notificações", description = "Operações relacionadas às notificações do sistema")
 public class NotificationController {
 
     private final NotificationService notificationService;

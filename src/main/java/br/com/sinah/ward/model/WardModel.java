@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "wards")
 public class WardModel {
     @Column(unique = true, insertable = false, updatable = false, columnDefinition = "serial")
@@ -34,14 +34,4 @@ public class WardModel {
     private LocalDateTime updatedAt;
 
     public WardModel(UUID uuid) {}
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }

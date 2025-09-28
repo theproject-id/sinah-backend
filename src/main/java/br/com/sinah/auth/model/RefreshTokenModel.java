@@ -4,14 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "refresh_tokens")
 public class RefreshTokenModel {
-
     @Column(unique = true, insertable = false, updatable = false, columnDefinition = "serial")
     private Long id;
 
@@ -42,61 +45,5 @@ public class RefreshTokenModel {
         this.userUuid = userUuid;
         this.issuedAt = issuedAt;
         this.expiresAt = expiresAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public UUID getUserUuid() {
-        return userUuid;
-    }
-
-    public void setUserUuid(UUID userUuid) {
-        this.userUuid = userUuid;
-    }
-
-    public Instant getIssuedAt() {
-        return issuedAt;
-    }
-
-    public void setIssuedAt(Instant issuedAt) {
-        this.issuedAt = issuedAt;
-    }
-
-    public Instant getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(Instant expiresAt) {
-        this.expiresAt = expiresAt;
-    }
-
-    public boolean isRevoked() {
-        return revoked;
-    }
-
-    public void setRevoked(boolean revoked) {
-        this.revoked = revoked;
     }
 }

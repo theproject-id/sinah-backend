@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Wards", description = "Gerenciamento de alas hospitalares")
 @RestController
 @RequestMapping("/api/wards")
+@Tag(name = "Wards", description = "Gerenciamento de alas hospitalares")
 public class WardController {
 
     private final WardService wardService;
