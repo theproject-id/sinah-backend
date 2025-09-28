@@ -21,6 +21,4 @@ public record NotificationResponseDTO(
         String localInfection,
         String responsibleUser,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt
-) {
-}
+        LocalDateTime updatedAt) {}

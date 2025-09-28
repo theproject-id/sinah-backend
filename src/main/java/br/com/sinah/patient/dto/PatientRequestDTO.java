@@ -5,7 +5,6 @@ import br.com.sinah.patient.enums.Gender;
 import java.time.LocalDate;
 
 public record PatientRequestDTO(
-
         String fullName,
         Gender gender,
         LocalDate dateOfBirth,
@@ -13,6 +12,4 @@ public record PatientRequestDTO(
         String nationalId,
         String address,
         String phone,
-        String clinicalHistory
-) {
-}
+        String clinicalHistory) {}

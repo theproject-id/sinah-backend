@@ -8,11 +8,32 @@ import java.time.LocalDateTime;
 
 public class PatientMapper {
     public static PatientResponseDTO toDTO(PatientModel model) {
-        return new PatientResponseDTO(model.getUuid(), model.getFullName(), model.getGender(), model.getDateOfBirth(), model.getMedicalRecordNumber(), model.getNationalId(), model.getAddress(), model.getPhone(), model.getClinicalHistory());
+        return new PatientResponseDTO(
+                model.getUuid(),
+                model.getFullName(),
+                model.getGender(),
+                model.getDateOfBirth(),
+                model.getMedicalRecordNumber(),
+                model.getNationalId(),
+                model.getAddress(),
+                model.getPhone(),
+                model.getClinicalHistory());
     }
 
     public static PatientModel toModel(PatientRequestDTO dto) {
-        return new PatientModel(null,null, dto.fullName(), dto.gender(), dto.dateOfBirth(), dto.medicalRecordNumber(), dto.nationalId(), dto.address(), dto.phone(), dto.clinicalHistory(),LocalDateTime.now(),LocalDateTime.now());
+        return new PatientModel(
+                null,
+                null,
+                dto.fullName(),
+                dto.gender(),
+                dto.dateOfBirth(),
+                dto.medicalRecordNumber(),
+                dto.nationalId(),
+                dto.address(),
+                dto.phone(),
+                dto.clinicalHistory(),
+                LocalDateTime.now(),
+                LocalDateTime.now());
     }
 
     public static PatientModel toUpdate(PatientModel model, PatientRequestDTO dto) {

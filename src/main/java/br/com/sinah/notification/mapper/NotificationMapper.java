@@ -24,8 +24,7 @@ public class NotificationMapper {
                 model.getLocalInfection(),
                 model.getResponsibleUser(),
                 model.getCreatedAt(),
-                model.getUpdatedAt()
-        );
+                model.getUpdatedAt());
     }
 
     public static NotificationModel toModel(NotificationRequestDTO request, WardModel ward, PatientModel patient) {
@@ -44,11 +43,11 @@ public class NotificationMapper {
                 request.localInfection(),
                 request.responsibleUser(),
                 LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+                LocalDateTime.now());
     }
 
-    public static NotificationModel toUpdate(NotificationModel model, WardModel ward,PatientModel patient,NotificationRequestDTO dto) {
+    public static NotificationModel toUpdate(
+            NotificationModel model, WardModel ward, PatientModel patient, NotificationRequestDTO dto) {
         model.setNotificationType(dto.notificationType());
         model.setNotificationDate(dto.notificationDate());
         model.setStatus(dto.status());

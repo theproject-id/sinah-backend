@@ -14,6 +14,4 @@ public record PatientResponseDTO(
         String nationalId,
         String address,
         String phone,
-        String clinicalHistory
-) {
-}
+        String clinicalHistory) {}

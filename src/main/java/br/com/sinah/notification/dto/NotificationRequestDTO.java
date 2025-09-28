@@ -18,6 +18,4 @@ public record NotificationRequestDTO(
         String resistance,
         InfectionOrigin infectionOrigin,
         String localInfection,
-        String responsibleUser
-) {
-}
+        String responsibleUser) {}

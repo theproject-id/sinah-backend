@@ -5,6 +5,7 @@ import br.com.sinah.ward.dto.WardRequestDTO;
 import br.com.sinah.ward.dto.WardResponseDTO;
 import br.com.sinah.ward.mapper.WardMapper;
 import br.com.sinah.ward.repository.WardRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class WardService {
     }
 
     public WardResponseDTO findByUuid(UUID uuid) {
-        var find = wardRepository.findById(uuid).orElseThrow(()-> new NotFoundException("Ward not found"));
+        var find = wardRepository.findById(uuid).orElseThrow(() -> new NotFoundException("Ward not found"));
         return WardMapper.toDTO(find);
     }
 
@@ -34,14 +35,13 @@ public class WardService {
     }
 
     public void deleteByUuid(UUID uuid) {
-        var find = wardRepository.findById(uuid).orElseThrow(()-> new NotFoundException("Ward not found"));
+        var find = wardRepository.findById(uuid).orElseThrow(() -> new NotFoundException("Ward not found"));
         wardRepository.deleteById(uuid);
     }
 
     public WardResponseDTO update(UUID uuid, WardRequestDTO dto) {
-        var find = wardRepository.findById(uuid).orElseThrow(()-> new NotFoundException("Ward not found"));
-        var updated = WardMapper.toUpdate(find,dto);
-        return  WardMapper.toDTO(this.wardRepository.save(updated));
+        var find = wardRepository.findById(uuid).orElseThrow(() -> new NotFoundException("Ward not found"));
+        var updated = WardMapper.toUpdate(find, dto);
+        return WardMapper.toDTO(this.wardRepository.save(updated));
     }
-
 }
