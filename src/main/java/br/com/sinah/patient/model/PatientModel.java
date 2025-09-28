@@ -1,12 +1,15 @@
 package br.com.sinah.patient.model;
 
+import br.com.sinah.patient.enums.Gender;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+
 import java.util.UUID;
 @Data
 @AllArgsConstructor
@@ -20,14 +23,38 @@ public class PatientModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
+
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Gender gender;
+
+    @Column(name = "date_of_birth", nullable = false)
+    private LocalDate dateOfBirth;
+
+    @Column(name = "medical_record_number", unique = true, nullable = false)
+    private String medicalRecordNumber;
+
+    @Column(name = "national_id", unique = true)
+    private String nationalId;
+
+    @Column
+    private String address;
+
+    @Column
+    private String phone;
+
+    @Column(name = "clinical_history")
+    private String clinicalHistory;
+
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    public PatientModel(UUID uuid) {
-    }
 
     @PrePersist
     protected void onCreate() {

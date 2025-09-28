@@ -1,3 +1,4 @@
+
 -- Inserir 5 wards
 INSERT INTO wards (uuid, created_at, updated_at) VALUES
   ('f0a9eaa6-7e8a-4d2f-bf31-0d2ab3c99a01', now(), now()),
@@ -7,13 +8,71 @@ INSERT INTO wards (uuid, created_at, updated_at) VALUES
   ('8f3e5d8d-68b1-49e2-8f4a-3960f1ebf245', now(), now());
 
 -- Inserir 5 patients
-INSERT INTO patients (uuid, created_at, updated_at) VALUES
-  ('dc6f77f3-7269-4f38-a6a1-cc69c3db63d6', now(), now()),
-  ('3b95e4b8-c6ea-4195-8d3f-5b2bc3453c70', now(), now()),
-  ('f5c20cb2-7d1a-42e7-b321-9120ad9f53a3', now(), now()),
-  ('d281dd99-16cb-4f5b-b264-dcc5c9393a8a', now(), now()),
-  ('cf43d3b7-438b-47d6-98fa-b8c63b3fd1e3', now(), now());
-
+INSERT INTO patients (
+    uuid, full_name, gender, date_of_birth,
+    medical_record_number, national_id, address, phone,
+    clinical_history, created_at, updated_at
+) VALUES
+(
+    '10000000-0000-0000-0000-000000000001',
+    'Alice Martins',
+    'FEMALE',
+    '1982-04-10',
+    'MRN-1001',
+    '12345678901',
+    'Rua das Flores, 123 - São Paulo, SP',
+    '+55 11 91234-5678',
+    'Patient with chronic asthma. No recent hospitalizations.',
+    now(), now()
+),
+(
+    '10000000-0000-0000-0000-000000000002',
+    'Bruno Silva',
+    'MALE',
+    '1978-11-22',
+    'MRN-1002',
+    '23456789012',
+    'Av. Central, 456 - Campinas, SP',
+    '+55 19 99876-5432',
+    'Diabetic, using insulin daily. No surgical history.',
+    now(), now()
+),
+(
+    '10000000-0000-0000-0000-000000000003',
+    'Carla Souza',
+    'FEMALE',
+    '1995-01-15',
+    'MRN-1003',
+    '34567890123',
+    'Rua B, 78 - Curitiba, PR',
+    '+55 41 91234-4321',
+    'Healthy. Recent appendectomy.',
+    now(), now()
+),
+(
+    '10000000-0000-0000-0000-000000000004',
+    'Daniel Oliveira',
+    'MALE',
+    '1989-07-30',
+    'MRN-1004',
+    '45678901234',
+    'Rua do Sol, 321 - Salvador, BA',
+    '+55 71 93456-1234',
+    'History of hypertension and high cholesterol.',
+    now(), now()
+),
+(
+    '10000000-0000-0000-0000-000000000005',
+    'Eduarda Lima',
+    'FEMALE',
+    '2000-03-25',
+    'MRN-1005',
+    '56789012345',
+    'Av. das Américas, 999 - Rio de Janeiro, RJ',
+    '+55 21 95678-4321',
+    'Patient with kidney transplant in 2019. On immunosuppressants.',
+    now(), now()
+);
 -- Inserir 5 notifications com valores ENUM válidos
 INSERT INTO notifications (
     uuid,
@@ -111,3 +170,4 @@ INSERT INTO notifications (
     now(),
     now()
   );
+
