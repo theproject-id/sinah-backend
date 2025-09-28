@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "*"
+      - "src/**"
 
 jobs:
   test:
@@ -18,6 +19,9 @@ jobs:
           distribution: corretto
           java-version: 21
           cache: maven
+
+      - name: Run code lint
+        run: make lint
 
       - name: Run tests
         run: make test

@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SinahApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SinahApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SinahApplication.class, args);
+    }
 }
