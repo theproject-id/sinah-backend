@@ -7,11 +7,6 @@ import org.springframework.test.context.ActiveProfiles;
 class SinahApplicationTests {
 
     @Test
-<<<<<<< HEAD
-    void contextLoads() {}
-=======
     void contextLoads() {
     }
-
->>>>>>> feat-auth
 }
