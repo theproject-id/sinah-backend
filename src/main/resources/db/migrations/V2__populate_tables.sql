@@ -96,8 +96,8 @@ INSERT INTO notifications (
     'IRA',
     now(),
     'SUSPECTED',
-    'f0a9eaa6-7e8a-4d2f-bf31-0d2ab3c99a01',
-    'dc6f77f3-7269-4f38-a6a1-cc69c3db63d6',
+    'f0a9eaa6-7e8a-4d2f-bf31-0d2ab3c99a01',  -- UTI
+    '10000000-0000-0000-0000-000000000001',  -- Alice Martins
     'Infecção por KPC',
     'Klebsiella pneumoniae',
     'Carbapenêmico',
@@ -112,8 +112,8 @@ INSERT INTO notifications (
     'RM',
     now(),
     'CONFIRMED',
-    'a9f51cc0-ec9e-4dd5-bdc4-82a7e2a393ac',
-    '3b95e4b8-c6ea-4195-8d3f-5b2bc3453c70',
+    'a9f51cc0-ec9e-4dd5-bdc4-82a7e2a393ac',  -- Emergência
+    '10000000-0000-0000-0000-000000000002',  -- Bruno Silva
     'Paciente com MRSA',
     'Staphylococcus aureus',
     'Oxacilina',
@@ -128,8 +128,8 @@ INSERT INTO notifications (
     'IRA',
     now(),
     'SUSPECTED',
-    'c373dd4a-d0ce-4d63-bbb6-7fcdbb5df0ae',
-    'f5c20cb2-7d1a-42e7-b321-9120ad9f53a3',
+    'c373dd4a-d0ce-4d63-bbb6-7fcdbb5df0ae',  -- Pediatria
+    '10000000-0000-0000-0000-000000000003',  -- Carla Souza
     'Colonização por VRE',
     'Enterococcus faecium',
     'Vancomicina',
@@ -144,8 +144,8 @@ INSERT INTO notifications (
     'RM',
     now(),
     'DISCARDED',
-    '63d18972-b7e1-4297-b09b-93c9028755f7',
-    'd281dd99-16cb-4f5b-b264-dcc5c9393a8a',
+    '63d18972-b7e1-4297-b09b-93c9028755f7',  -- Enfermaria Geral
+    '10000000-0000-0000-0000-000000000004',  -- Daniel Oliveira
     'Paciente em precaução de contato',
     NULL,
     NULL,
@@ -160,8 +160,8 @@ INSERT INTO notifications (
     'IRA',
     now(),
     'CONFIRMED',
-    '8f3e5d8d-68b1-49e2-8f4a-3960f1ebf245',
-    'cf43d3b7-438b-47d6-98fa-b8c63b3fd1e3',
+    '8f3e5d8d-68b1-49e2-8f4a-3960f1ebf245',  -- Centro Cirúrgico
+    '10000000-0000-0000-0000-000000000005',  -- Eduarda Lima
     'Infecção por Pseudomonas',
     'Pseudomonas aeruginosa',
     'Multirresistente',
@@ -171,3 +171,4 @@ INSERT INTO notifications (
     now(),
     now()
   );
+
