@@ -1,6 +1,7 @@
 package br.com.sinah.common.config;
 
 import br.com.sinah.user.service.UserService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
