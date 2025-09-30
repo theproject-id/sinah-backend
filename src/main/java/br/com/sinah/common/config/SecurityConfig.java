@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .permitAll()
 
                         // Public routes
-                        .requestMatchers(HttpMethod.GET, "/api/v1/ping")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/ping", "/swagger-ui/**", "/v3/api-docs/**")
                         .permitAll()
 
                         // Auth routes
@@ -53,6 +53,20 @@ public class SecurityConfig {
                         // User routes (admin only)
                         .requestMatchers("/api/v1/users/**")
                         .hasRole("ADMIN")
+
+                        // Notification routes
+                        .requestMatchers("/api/v1/notifications/**")
+                        .authenticated()
+
+                        // Patients routes
+                        .requestMatchers("/api/v1/patients/**")
+                        .authenticated()
+
+                        // Wards routes
+                        .requestMatchers("/api/v1/wards/**")
+                        .authenticated()
+
+                        // Any other request
                         .anyRequest()
                         .denyAll())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
