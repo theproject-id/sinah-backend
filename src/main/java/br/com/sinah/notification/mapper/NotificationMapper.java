@@ -2,6 +2,9 @@ package br.com.sinah.notification.mapper;
 
 import br.com.sinah.notification.dto.NotificationRequestDTO;
 import br.com.sinah.notification.dto.NotificationResponseDTO;
+import br.com.sinah.notification.dto.PatientDisplayDTO;
+import br.com.sinah.notification.dto.UserDisplayDTO;
+import br.com.sinah.notification.dto.WardDisplayDTO;
 import br.com.sinah.notification.model.NotificationModel;
 import br.com.sinah.patient.model.PatientModel;
 import br.com.sinah.user.model.UserModel;
@@ -11,22 +14,44 @@ import java.time.LocalDateTime;
 
 public class NotificationMapper {
     public static NotificationResponseDTO toDTO(NotificationModel model) {
+        PatientDisplayDTO patientDisplay = null;
+        if (model.getPatient() != null) {
+            patientDisplay = new PatientDisplayDTO(
+                    model.getPatient().getUuid() != null
+                            ? model.getPatient().getUuid().toString()
+                            : null,
+                    model.getPatient().getFullName());
+        }
+        UserDisplayDTO userDisplay = null;
+        if (model.getUser() != null) {
+            userDisplay = new UserDisplayDTO(
+                    model.getUser().getUuid() != null
+                            ? model.getUser().getUuid().toString()
+                            : null,
+                    model.getUser().getUsername(),
+                    model.getUser().getFirstName() + " " + model.getUser().getLastName());
+        }
+        WardDisplayDTO wardDisplay = null;
+        if (model.getAla() != null) {
+            wardDisplay = new WardDisplayDTO(
+                    model.getAla().getUuid() != null ? model.getAla().getUuid().toString() : null,
+                    model.getAla().getName());
+        }
         return new NotificationResponseDTO(
                 model.getUuid(),
                 model.getNotificationType(),
                 model.getNotificationDate(),
                 model.getStatus(),
-                model.getAla().getUuid(),
-                model.getPatient().getUuid(),
-                model.getUser() != null ? model.getUser().getUuid() : null,
+                wardDisplay,
                 model.getDescription(),
                 model.getMicroorganism(),
                 model.getResistance(),
                 model.getInfectionOrigin(),
                 model.getLocalInfection(),
-                model.getResponsibleUser(),
                 model.getCreatedAt(),
-                model.getUpdatedAt());
+                model.getUpdatedAt(),
+                patientDisplay,
+                userDisplay);
     }
 
     public static NotificationModel toModel(

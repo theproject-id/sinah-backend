@@ -12,14 +12,13 @@ public record NotificationResponseDTO(
         NotificationType notificationType,
         LocalDateTime notificationDate,
         NotificationStatus status,
-        UUID wardId,
-        UUID patientId,
-        UUID userUuid,
+        WardDisplayDTO ward,
         String description,
         String microorganism,
         String resistance,
         InfectionOrigin infectionOrigin,
         String localInfection,
-        String responsibleUser,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt) {}
+        LocalDateTime updatedAt,
+        PatientDisplayDTO patient,
+        UserDisplayDTO createdBy) {}
