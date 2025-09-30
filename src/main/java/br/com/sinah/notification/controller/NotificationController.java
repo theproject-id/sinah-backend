@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/notifications")
+@RequestMapping("/api/v1/notifications")
 @Tag(name = "Notificações", description = "Operações relacionadas às notificações do sistema")
 public class NotificationController {
 

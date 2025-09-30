@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Tag(name = "Pacientes", description = "Operações relacionadas a pacientes")
 @AllArgsConstructor
-@RequestMapping("/api/patients")
+@RequestMapping("/api/v1/patients")
 @RestController()
 public class PatientController {
     private final PatientService patientService;
