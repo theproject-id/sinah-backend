@@ -20,15 +20,14 @@ public class SpringDocConfig {
                         .license(new License().name("Apache 2.0").url("https://www.apache.org/licenses/LICENSE-2.0"))
                         .termsOfService("https://ulisses-dev.com.br/pub")
                         .version("1.0"))
-                .addSecurityItem(new SecurityRequirement().addList("BearerAuth"))
-                .components(new Components()
-                        .addSecuritySchemes(
-                                "BearerAuth",
-                                new SecurityScheme()
-                                        .name("BearerAuth")
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                                        .description("JWT Token")));
+                .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()));
     }
+
+    private SecurityScheme createAPIKeyScheme() {
+        return new SecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .bearerFormat("JWT")
+                .scheme("bearer");
+
 }

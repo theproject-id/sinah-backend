@@ -17,14 +17,21 @@ RESET   := $(shell tput -Txterm sgr0)
 run: docker-start ## Setup environment, start containers and run spring application
 	@./mvnw spring-boot:run
 
-test:
+test: ## Run tests
 	@./mvnw clean test
 
-fmt:
+fmt: ## Format all java code
 	@./mvnw spotless:apply
 
-lint:
+lint: ## Lint all java code
 	@./mvnw spotless:check
+
+validate: ## Validate that system contains all requirements
+	@echo "Validating system requirements..."
+	@command -v make >/dev/null 2>&1 || { echo "❌ make is not installed"; exit 1; }
+	@command -v docker >/dev/null 2>&1 || { echo "❌ docker is not installed"; exit 1; }
+	@command -v java >/dev/null 2>&1 || { echo "❌ java is not installed"; exit 1; }
+	@echo "✅ All requirements are installed."
 
 ## Build
 
