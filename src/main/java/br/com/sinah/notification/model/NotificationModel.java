@@ -4,6 +4,7 @@ import br.com.sinah.notification.enums.InfectionOrigin;
 import br.com.sinah.notification.enums.NotificationStatus;
 import br.com.sinah.notification.enums.NotificationType;
 import br.com.sinah.patient.model.PatientModel;
+import br.com.sinah.user.model.UserModel;
 import br.com.sinah.ward.model.WardModel;
 
 import jakarta.persistence.*;
@@ -45,6 +46,10 @@ public class NotificationModel {
     @ManyToOne
     @JoinColumn(nullable = false)
     private PatientModel patient;
+
+    @ManyToOne
+    @JoinColumn(name = "user_uuid", nullable = false)
+    private UserModel user;
 
     @Column(columnDefinition = "TEXT")
     private String description;

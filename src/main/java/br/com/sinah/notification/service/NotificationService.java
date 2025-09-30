@@ -7,6 +7,7 @@ import br.com.sinah.notification.mapper.NotificationMapper;
 import br.com.sinah.notification.model.NotificationModel;
 import br.com.sinah.notification.repository.NotificationRepository;
 import br.com.sinah.patient.repository.PatientRepository;
+import br.com.sinah.user.repository.UserRepository;
 import br.com.sinah.ward.repository.WardRepository;
 
 import org.springframework.stereotype.Service;
@@ -24,13 +25,17 @@ public class NotificationService {
 
     private final PatientRepository patientRepository;
 
+    private final UserRepository userRepository;
+
     public NotificationService(
             NotificationRepository notificationRepository,
             WardRepository wardRepository,
-            PatientRepository patientRepository) {
+            PatientRepository patientRepository,
+            UserRepository userRepository) {
         this.notificationRepository = notificationRepository;
         this.wardRepository = wardRepository;
         this.patientRepository = patientRepository;
+        this.userRepository = userRepository;
     }
 
     public NotificationResponseDTO create(NotificationRequestDTO dto) {
@@ -38,7 +43,8 @@ public class NotificationService {
         var patient = patientRepository
                 .findById(dto.patientId())
                 .orElseThrow(() -> new NotFoundException("Patient not found"));
-        NotificationModel model = NotificationMapper.toModel(dto, ward, patient);
+        var user = userRepository.findById(dto.userUuid()).orElseThrow(() -> new NotFoundException("User not found"));
+        NotificationModel model = NotificationMapper.toModel(dto, ward, patient, user);
         NotificationModel saved = notificationRepository.save(model);
         return NotificationMapper.toDTO(saved);
     }
@@ -63,7 +69,8 @@ public class NotificationService {
         var patient = patientRepository
                 .findById(dto.patientId())
                 .orElseThrow(() -> new NotFoundException("Patient not found"));
-        var requestUpdated = NotificationMapper.toUpdate(model, ward, patient, dto);
+        var user = userRepository.findById(dto.userUuid()).orElseThrow(() -> new NotFoundException("User not found"));
+        var requestUpdated = NotificationMapper.toUpdate(model, ward, patient, user, dto);
         NotificationModel updated = notificationRepository.save(requestUpdated);
         return NotificationMapper.toDTO(updated);
     }
