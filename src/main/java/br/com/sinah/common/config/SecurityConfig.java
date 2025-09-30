@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .permitAll()
 
                         // Public routes
-                        .requestMatchers(HttpMethod.GET, "/api/v1/ping")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/ping", "/swagger-ui/**", "/v3/api-docs/**")
                         .permitAll()
 
                         // Auth routes

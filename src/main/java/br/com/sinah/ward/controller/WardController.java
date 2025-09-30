@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/wards")
+@RequestMapping("/api/v1/wards")
 @Tag(name = "Wards", description = "Gerenciamento de alas hospitalares")
 public class WardController {
 

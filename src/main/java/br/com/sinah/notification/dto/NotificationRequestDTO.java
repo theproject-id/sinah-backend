@@ -13,6 +13,7 @@ public record NotificationRequestDTO(
         NotificationStatus status,
         UUID wardId,
         UUID patientId,
+        UUID userUuid,
         String description,
         String microorganism,
         String resistance,

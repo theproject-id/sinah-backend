@@ -1,4 +1,6 @@
-
+-- Inserir 1 usuário default para referência nas notificações
+INSERT INTO users (uuid, username, first_name, last_name, email, password, role, created_at, updated_at) VALUES
+  ('00000000-0000-0000-0000-000000000001', 'default.user', 'Usuário', 'Default', 'default@hospital.com', '$2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36r5h4bT7y1l1r1r1r1r1r1', 'ADMIN', now(), now());
 
 -- Inserir 5 wards
 INSERT INTO wards (uuid, name, description, created_at, updated_at) VALUES
@@ -82,6 +84,7 @@ INSERT INTO notifications (
     status,
     ward_uuid,
     patient_uuid,
+    user_uuid,
     description,
     microorganism,
     resistance,
@@ -98,6 +101,7 @@ INSERT INTO notifications (
     'SUSPECTED',
     'f0a9eaa6-7e8a-4d2f-bf31-0d2ab3c99a01',  -- UTI
     '10000000-0000-0000-0000-000000000001',  -- Alice Martins
+    '00000000-0000-0000-0000-000000000001',  -- Usuário default
     'Infecção por KPC',
     'Klebsiella pneumoniae',
     'Carbapenêmico',
@@ -114,6 +118,7 @@ INSERT INTO notifications (
     'CONFIRMED',
     'a9f51cc0-ec9e-4dd5-bdc4-82a7e2a393ac',  -- Emergência
     '10000000-0000-0000-0000-000000000002',  -- Bruno Silva
+    '00000000-0000-0000-0000-000000000001',  -- Usuário default
     'Paciente com MRSA',
     'Staphylococcus aureus',
     'Oxacilina',
@@ -130,6 +135,7 @@ INSERT INTO notifications (
     'SUSPECTED',
     'c373dd4a-d0ce-4d63-bbb6-7fcdbb5df0ae',  -- Pediatria
     '10000000-0000-0000-0000-000000000003',  -- Carla Souza
+    '00000000-0000-0000-0000-000000000001',  -- Usuário default
     'Colonização por VRE',
     'Enterococcus faecium',
     'Vancomicina',
@@ -146,6 +152,7 @@ INSERT INTO notifications (
     'DISCARDED',
     '63d18972-b7e1-4297-b09b-93c9028755f7',  -- Enfermaria Geral
     '10000000-0000-0000-0000-000000000004',  -- Daniel Oliveira
+    '00000000-0000-0000-0000-000000000001',  -- Usuário default
     'Paciente em precaução de contato',
     NULL,
     NULL,
@@ -162,13 +169,13 @@ INSERT INTO notifications (
     'CONFIRMED',
     '8f3e5d8d-68b1-49e2-8f4a-3960f1ebf245',  -- Centro Cirúrgico
     '10000000-0000-0000-0000-000000000005',  -- Eduarda Lima
-    'Infecção por Pseudomonas',
-    'Pseudomonas aeruginosa',
-    'Multirresistente',
+    '00000000-0000-0000-0000-000000000001',  -- Usuário default
+    'Infecção pós-operatória',
+    'Escherichia coli',
+    'Cefalosporina',
     'HOSPITAL_ACQUIRED',
-    'Urinária',
-    'dr.claudio.souza',
+    'Abdominal',
+    'dr.carlos.mendes',
     now(),
     now()
   );
-

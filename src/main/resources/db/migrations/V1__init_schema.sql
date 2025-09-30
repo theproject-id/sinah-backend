@@ -57,6 +57,7 @@ CREATE TABLE notifications (
     status              VARCHAR(20) NOT NULL,
     ward_uuid           UUID NOT NULL,
     patient_uuid        UUID NOT NULL,
+    user_uuid           UUID NOT NULL,
     description         TEXT,
     microorganism       VARCHAR(255),
     resistance          VARCHAR(255),
@@ -72,5 +73,9 @@ CREATE TABLE notifications (
 
     CONSTRAINT fk_notifications_patient_uuid
         FOREIGN KEY (patient_uuid) REFERENCES patients(uuid)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_notifications_user_uuid
+        FOREIGN KEY (user_uuid) REFERENCES users(uuid)
         ON DELETE RESTRICT
 );
