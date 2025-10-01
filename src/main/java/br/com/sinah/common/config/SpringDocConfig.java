@@ -29,5 +29,5 @@ public class SpringDocConfig {
                 .type(SecurityScheme.Type.HTTP)
                 .bearerFormat("JWT")
                 .scheme("bearer");
-
+    }
 }

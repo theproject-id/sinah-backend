@@ -1,18 +1,14 @@
 package br.com.sinah.notification.model;
 
-import br.com.sinah.notification.enums.InfectionOrigin;
-import br.com.sinah.notification.enums.NotificationStatus;
-import br.com.sinah.notification.enums.NotificationType;
-import br.com.sinah.patient.model.PatientModel;
-import br.com.sinah.user.model.UserModel;
-import br.com.sinah.ward.model.WardModel;
-
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -28,50 +24,49 @@ public class NotificationModel {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private NotificationType notificationType;
+    private String title;
 
-    @Column(nullable = false)
-    private LocalDateTime notificationDate;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private NotificationStatus status;
-
-    @ManyToOne
-    @JoinColumn(name = "ward_uuid", nullable = false)
-    private WardModel ala;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private PatientModel patient;
-
-    @ManyToOne
-    @JoinColumn(name = "user_uuid", nullable = false)
-    private UserModel user;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column
-    private String microorganism;
+    @Column(nullable = false, length = 50)
+    private String type;
 
-    @Column
-    private String resistance;
+    @Column(nullable = false, length = 50)
+    private String priority;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private InfectionOrigin infectionOrigin;
+    @Column(name = "patient_id", nullable = false)
+    private UUID patientId;
 
-    @Column
-    private String localInfection;
+    @Column(name = "patient_name", nullable = false, length = 100)
+    private String patientName;
 
-    private String responsibleUser;
+    @Column(name = "patient_room", length = 50)
+    private String patientRoom;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "patient_bed", length = 50)
+    private String patientBed;
+
+    @Column(name = "created_by", nullable = false)
+    private UUID createdBy;
+
+    @Column(name = "created_by_name", nullable = false, length = 100)
+    private String createdByName;
+
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "due_date")
+    private LocalDateTime dueDate;
+
+    @Column(columnDefinition = "TEXT")
+    private String notes;
+
+    @Type(JsonType.class)
+    @Column(name = "additional_data", columnDefinition = "jsonb")
+    private Map<String, Object> additionalData;
 }
