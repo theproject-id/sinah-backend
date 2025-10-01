@@ -58,14 +58,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/notifications/**")
                         .authenticated()
 
-                        // Patients routes
-                        .requestMatchers("/api/v1/patients/**")
-                        .authenticated()
-
-                        // Wards routes
-                        .requestMatchers("/api/v1/wards/**")
-                        .authenticated()
-
                         // Any other request
                         .anyRequest()
                         .denyAll())
