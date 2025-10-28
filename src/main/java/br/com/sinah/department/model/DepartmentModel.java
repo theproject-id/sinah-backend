@@ -1,6 +1,5 @@
-package br.com.sinah.ward.model;
+package br.com.sinah.department.model;
 
-import br.com.sinah.room.model.RoomModel;
 import br.com.sinah.user.model.UserModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "wards")
-public class WardModel {
+public class DepartmentModel {
     @Column(unique = true, insertable = false, updatable = false, columnDefinition = "serial")
     private Long id;
 
@@ -30,9 +29,8 @@ public class WardModel {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "Rooms", nullable = false)
-    private List<RoomModel> rooms;
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserModel> healthcareProfessionals;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -40,5 +38,5 @@ public class WardModel {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public WardModel(UUID uuid) {}
+    public DepartmentModel(UUID uuid) {}
 }

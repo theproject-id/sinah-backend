@@ -1,7 +1,10 @@
 package br.com.sinah.patient.model;
 
+import br.com.sinah.department.model.DepartmentModel;
 import br.com.sinah.patient.enums.Gender;
 
+import br.com.sinah.room.model.RoomModel;
+import br.com.sinah.ward.model.WardModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,11 +37,8 @@ public class PatientModel {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
-    @Column(name = "medical_record_number", unique = true, nullable = false)
-    private String medicalRecordNumber;
-
-    @Column(name = "national_id", unique = true)
-    private String nationalId;
+    @Column(name = "cpf", unique = true)
+    private String cpf;
 
     @Column
     private String address;
@@ -46,8 +46,17 @@ public class PatientModel {
     @Column
     private String phone;
 
-    @Column(name = "clinical_history")
-    private String clinicalHistory;
+    @ManyToOne
+    @JoinColumn(name = "department_uuid", nullable = false)
+    private DepartmentModel department;
+
+    @ManyToOne
+    @JoinColumn(name = "ward_uuid", nullable = false)
+    private WardModel ward;
+
+    @ManyToOne
+    @JoinColumn(name = "room_uuid", nullable = false)
+    private RoomModel room;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

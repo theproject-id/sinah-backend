@@ -25,12 +25,12 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @Operation(summary = "Cria uma nova notificação")
+    @Operation(summary = "Criar uma nova notificação")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "201", description = "Notificação criada com sucesso"),
                 @ApiResponse(responseCode = "400", description = "Requisição inválida"),
-                @ApiResponse(responseCode = "404", description = "Paciente ou Ala não encontrados")
+                @ApiResponse(responseCode = "404", description = "Paciente ou ala não encontrados")
             })
     @PostMapping
     public ResponseEntity<NotificationResponseDTO> create(@RequestBody NotificationRequestDTO dto) {
@@ -38,7 +38,7 @@ public class NotificationController {
         return ResponseEntity.status(201).body(created);
     }
 
-    @Operation(summary = "Lista todas as notificações")
+    @Operation(summary = "Listar todas as notificações")
     @ApiResponses(
             value = {@ApiResponse(responseCode = "200", description = "Lista de notificações retornada com sucesso")})
     @GetMapping
@@ -46,7 +46,7 @@ public class NotificationController {
         return ResponseEntity.ok(notificationService.findAll());
     }
 
-    @Operation(summary = "Busca uma notificação por ID")
+    @Operation(summary = "Buscar notificação por ID")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "200", description = "Notificação encontrada"),
@@ -57,7 +57,7 @@ public class NotificationController {
         return ResponseEntity.ok(notificationService.findById(id));
     }
 
-    @Operation(summary = "Atualiza uma notificação existente")
+    @Operation(summary = "Atualizar uma notificação existente")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "200", description = "Notificação atualizada com sucesso"),
@@ -70,7 +70,7 @@ public class NotificationController {
         return ResponseEntity.ok(notificationService.update(id, dto));
     }
 
-    @Operation(summary = "Remove uma notificação por ID")
+    @Operation(summary = "Remover uma notificação por ID")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "204", description = "Notificação removida com sucesso"),

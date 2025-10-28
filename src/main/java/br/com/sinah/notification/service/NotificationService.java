@@ -44,7 +44,7 @@ public class NotificationService {
                 .findById(dto.patientId())
                 .orElseThrow(() -> new NotFoundException("Patient not found"));
         var user = userRepository.findById(dto.userUuid()).orElseThrow(() -> new NotFoundException("User not found"));
-        NotificationModel model = NotificationMapper.toModel(dto, ward, patient, user);
+        NotificationModel model = NotificationMapper.toModel(dto, ward, patient, user, null, null);
         NotificationModel saved = notificationRepository.save(model);
         return NotificationMapper.toDTO(saved);
     }
@@ -70,7 +70,7 @@ public class NotificationService {
                 .findById(dto.patientId())
                 .orElseThrow(() -> new NotFoundException("Patient not found"));
         var user = userRepository.findById(dto.userUuid()).orElseThrow(() -> new NotFoundException("User not found"));
-        var requestUpdated = NotificationMapper.toUpdate(model, ward, patient, user, dto);
+        var requestUpdated = NotificationMapper.toUpdate(model,ward, patient, user, null, null,dto);
         NotificationModel updated = notificationRepository.save(requestUpdated);
         return NotificationMapper.toDTO(updated);
     }

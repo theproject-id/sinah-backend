@@ -18,7 +18,7 @@ import java.util.UUID;
 @Tag(name = "Pacientes", description = "Operações relacionadas a pacientes")
 @AllArgsConstructor
 @RequestMapping("/api/v1/patients")
-@RestController()
+@RestController
 public class PatientController {
     private final PatientService patientService;
 
@@ -34,7 +34,7 @@ public class PatientController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Buscar paciente pelo UUID")
+    @Operation(summary = "Buscar paciente por UUID")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "200", description = "Paciente encontrado"),
@@ -68,7 +68,7 @@ public class PatientController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Deletar paciente pelo UUID")
+    @Operation(summary = "Deletar paciente por UUID")
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "204", description = "Paciente deletado com sucesso"),

@@ -1,24 +1,25 @@
 package br.com.sinah.notification.dto;
 
-import br.com.sinah.notification.enums.InfectionOrigin;
-import br.com.sinah.notification.enums.NotificationStatus;
 import br.com.sinah.notification.enums.NotificationType;
+import br.com.sinah.notification.enums.PriorityLevel;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 public record NotificationResponseDTO(
         UUID uuid,
+        String title,
+        String description,
+        PriorityLevel priority,
         NotificationType notificationType,
         LocalDateTime notificationDate,
-        NotificationStatus status,
-        WardDisplayDTO ward,
-        String description,
-        String microorganism,
-        String resistance,
-        InfectionOrigin infectionOrigin,
-        String localInfection,
+        UUID patientId,
+        UUID departmentId,
+        UUID wardId,
+        UUID roomId,
+        UUID userId,
+        Map<String, Object> additionalData,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt,
-        PatientDisplayDTO patient,
-        UserDisplayDTO createdBy) {}
+        LocalDateTime dueDate,
+        LocalDateTime updatedAt) {}
