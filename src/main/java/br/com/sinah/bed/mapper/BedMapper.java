@@ -13,7 +13,7 @@ public class BedMapper {
 
     public static BedResponseDTO toDTO(BedModel model) {
         return new BedResponseDTO(
-                model.getUuid(),model.getNumber(), model.getCreatedAt(), LocalDateTime.now());
+                model.getUuid(), model.getNumber(), model.getCreatedAt(), LocalDateTime.now());
     }
 
     public static BedModel toUpdate(BedModel newBed, BedRequestDTO dto) {

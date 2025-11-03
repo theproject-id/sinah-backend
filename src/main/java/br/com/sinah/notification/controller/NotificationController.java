@@ -28,9 +28,9 @@ public class NotificationController {
     @Operation(summary = "Criar uma nova notificação")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "201", description = "Notificação criada com sucesso"),
-                @ApiResponse(responseCode = "400", description = "Requisição inválida"),
-                @ApiResponse(responseCode = "404", description = "Paciente ou ala não encontrados")
+                    @ApiResponse(responseCode = "201", description = "Notificação criada com sucesso"),
+                    @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+                    @ApiResponse(responseCode = "404", description = "Paciente ou ala não encontrados")
             })
     @PostMapping
     public ResponseEntity<NotificationResponseDTO> create(@RequestBody NotificationRequestDTO dto) {
@@ -49,8 +49,8 @@ public class NotificationController {
     @Operation(summary = "Buscar notificação por ID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Notificação encontrada"),
-                @ApiResponse(responseCode = "404", description = "Notificação não encontrada")
+                    @ApiResponse(responseCode = "200", description = "Notificação encontrada"),
+                    @ApiResponse(responseCode = "404", description = "Notificação não encontrada")
             })
     @GetMapping("/{id}")
     public ResponseEntity<NotificationResponseDTO> findById(@PathVariable UUID id) {
@@ -60,9 +60,9 @@ public class NotificationController {
     @Operation(summary = "Atualizar uma notificação existente")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Notificação atualizada com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Notificação não encontrada"),
-                @ApiResponse(responseCode = "400", description = "Dados de atualização inválidos")
+                    @ApiResponse(responseCode = "200", description = "Notificação atualizada com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Notificação não encontrada"),
+                    @ApiResponse(responseCode = "400", description = "Dados de atualização inválidos")
             })
     @PutMapping("/{id}")
     public ResponseEntity<NotificationResponseDTO> update(
@@ -73,8 +73,8 @@ public class NotificationController {
     @Operation(summary = "Remover uma notificação por ID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "204", description = "Notificação removida com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Notificação não encontrada")
+                    @ApiResponse(responseCode = "204", description = "Notificação removida com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Notificação não encontrada")
             })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {

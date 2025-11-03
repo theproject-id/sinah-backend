@@ -24,8 +24,8 @@ public class RoomController {
     @Operation(summary = "Criar um novo quarto")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Quarto criado com sucesso"),
-                @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos")
+                    @ApiResponse(responseCode = "200", description = "Quarto criado com sucesso"),
+                    @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos")
             })
     @PostMapping
     public ResponseEntity<RoomResponseDTO> createRoom(@RequestBody RoomRequestDTO request) {
@@ -36,8 +36,8 @@ public class RoomController {
     @Operation(summary = "Buscar quarto por UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Quarto encontrado"),
-                @ApiResponse(responseCode = "404", description = "Quarto não encontrado")
+                    @ApiResponse(responseCode = "200", description = "Quarto encontrado"),
+                    @ApiResponse(responseCode = "404", description = "Quarto não encontrado")
             })
     @GetMapping("/{uuid}")
     public ResponseEntity<RoomResponseDTO> getRoomByUuid(@PathVariable UUID uuid) {
@@ -56,9 +56,9 @@ public class RoomController {
     @Operation(summary = "Atualizar um quarto existente")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Quarto atualizado com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Quarto não encontrado"),
-                @ApiResponse(responseCode = "400", description = "Dados inválidos")
+                    @ApiResponse(responseCode = "200", description = "Quarto atualizado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Quarto não encontrado"),
+                    @ApiResponse(responseCode = "400", description = "Dados inválidos")
             })
     @PutMapping("/{uuid}")
     public ResponseEntity<RoomResponseDTO> updateRoom(
@@ -70,8 +70,8 @@ public class RoomController {
     @Operation(summary = "Deletar quarto pelo UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "204", description = "Quarto deletado com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Quarto não encontrado")
+                    @ApiResponse(responseCode = "204", description = "Quarto deletado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Quarto não encontrado")
             })
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteRoom(@PathVariable UUID uuid) {

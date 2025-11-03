@@ -1,4 +1,5 @@
 package br.com.sinah.notification.model;
+
 import br.com.sinah.department.model.DepartmentModel;
 import br.com.sinah.room.model.RoomModel;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
@@ -41,25 +42,9 @@ public class NotificationModel {
     @Column(nullable = false)
     private PriorityLevel priority;
 
-    @ManyToOne
-    @JoinColumn(name="patient_uuid", nullable = false)
-    private PatientModel patient;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private NotificationType notificationType;
-
-    @ManyToOne
-    @JoinColumn(name = "department_uuid", nullable = false)
-    private DepartmentModel department;
-
-    @ManyToOne
-    @JoinColumn(name = "ward_uuid", nullable = false)
-    private WardModel ward;
-
-    @ManyToOne
-    @JoinColumn(name = "room_uuid", nullable = false)
-    private RoomModel room;
 
     @Column(nullable = false)
     private LocalDateTime notificationDate;
@@ -67,6 +52,10 @@ public class NotificationModel {
     @ManyToOne
     @JoinColumn(name = "user_uuid", nullable = false)
     private UserModel user;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_uuid", nullable = false)
+    private PatientModel patient;
 
     @Type(JsonType.class)
     @Column(name = "additional_data", columnDefinition = "jsonb")

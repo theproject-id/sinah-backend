@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface BedRepository extends JpaRepository<BedModel, UUID> {}
+public interface BedRepository extends JpaRepository<BedModel, UUID> {
+}

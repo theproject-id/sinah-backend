@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class WardMapper {
     public static WardModel toModel(WardRequestDTO requestDTO) {
-        return new WardModel(null, UUID.randomUUID(),requestDTO.name(), requestDTO.description(),List.of(), LocalDateTime.now(), LocalDateTime.now());
+        return new WardModel(null, UUID.randomUUID(), requestDTO.name(), requestDTO.description(), List.of(), LocalDateTime.now(), LocalDateTime.now());
     }
 
     public static WardResponseDTO toDTO(WardModel model) {

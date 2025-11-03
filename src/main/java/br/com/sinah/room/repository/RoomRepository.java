@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface RoomRepository extends JpaRepository<RoomModel, UUID> {}
+public interface RoomRepository extends JpaRepository<RoomModel, UUID> {
+}

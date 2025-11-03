@@ -25,8 +25,8 @@ public class PatientController {
     @Operation(summary = "Criar um novo paciente")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Paciente criado com sucesso"),
-                @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos")
+                    @ApiResponse(responseCode = "200", description = "Paciente criado com sucesso"),
+                    @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos")
             })
     @PostMapping
     public ResponseEntity<PatientResponseDTO> createPatient(@RequestBody PatientRequestDTO request) {
@@ -37,8 +37,8 @@ public class PatientController {
     @Operation(summary = "Buscar paciente por UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Paciente encontrado"),
-                @ApiResponse(responseCode = "404", description = "Paciente não encontrado")
+                    @ApiResponse(responseCode = "200", description = "Paciente encontrado"),
+                    @ApiResponse(responseCode = "404", description = "Paciente não encontrado")
             })
     @GetMapping("/{uuid}")
     public ResponseEntity<PatientResponseDTO> getPatientByUuid(@PathVariable UUID uuid) {
@@ -57,9 +57,9 @@ public class PatientController {
     @Operation(summary = "Atualizar um paciente existente")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Paciente atualizado com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Paciente não encontrado"),
-                @ApiResponse(responseCode = "400", description = "Dados inválidos")
+                    @ApiResponse(responseCode = "200", description = "Paciente atualizado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Paciente não encontrado"),
+                    @ApiResponse(responseCode = "400", description = "Dados inválidos")
             })
     @PutMapping("/{uuid}")
     public ResponseEntity<PatientResponseDTO> updatePatient(
@@ -71,8 +71,8 @@ public class PatientController {
     @Operation(summary = "Deletar paciente por UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "204", description = "Paciente deletado com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Paciente não encontrado")
+                    @ApiResponse(responseCode = "204", description = "Paciente deletado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Paciente não encontrado")
             })
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deletePatient(@PathVariable UUID uuid) {

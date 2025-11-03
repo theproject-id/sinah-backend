@@ -36,8 +36,8 @@ public class WardController {
     @Operation(summary = "Buscar uma ala por UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Ala encontrada com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Ala não encontrada")
+                    @ApiResponse(responseCode = "200", description = "Ala encontrada com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Ala não encontrada")
             })
     @GetMapping("/{uuid}")
     public ResponseEntity<WardResponseDTO> getWardByUuid(
@@ -49,8 +49,8 @@ public class WardController {
     @Operation(summary = "Criar uma nova ala")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Ala criada com sucesso"),
-                @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos")
+                    @ApiResponse(responseCode = "200", description = "Ala criada com sucesso"),
+                    @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos")
             })
     @PostMapping
     public ResponseEntity<WardResponseDTO> createWard(
@@ -62,9 +62,9 @@ public class WardController {
     @Operation(summary = "Atualiza uma ala existente")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "200", description = "Ala atualizada com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Ala não encontrada"),
-                @ApiResponse(responseCode = "400", description = "Dados de atualização inválidos")
+                    @ApiResponse(responseCode = "200", description = "Ala atualizada com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Ala não encontrada"),
+                    @ApiResponse(responseCode = "400", description = "Dados de atualização inválidos")
             })
     @PutMapping("/{id}")
     public ResponseEntity<WardResponseDTO> update(@PathVariable UUID id, @RequestBody WardRequestDTO dto) {
@@ -74,8 +74,8 @@ public class WardController {
     @Operation(summary = "Excluir uma ala por UUID")
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "204", description = "Ala excluída com sucesso"),
-                @ApiResponse(responseCode = "404", description = "Ala não encontrada")
+                    @ApiResponse(responseCode = "204", description = "Ala excluída com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Ala não encontrada")
             })
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteWard(

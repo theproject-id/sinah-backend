@@ -22,4 +22,5 @@ public record NotificationResponseDTO(
         Map<String, Object> additionalData,
         LocalDateTime createdAt,
         LocalDateTime dueDate,
-        LocalDateTime updatedAt) {}
+        LocalDateTime updatedAt) {
+}

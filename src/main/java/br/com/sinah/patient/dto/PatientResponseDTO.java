@@ -14,8 +14,7 @@ public record PatientResponseDTO(
         String cpf,
         String address,
         String phone,
-        UUID departmentUuid,
-        UUID wardUuid,
-        UUID roomUuid,
+        UUID bedUuid,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt) {}
+        LocalDateTime updatedAt) {
+}

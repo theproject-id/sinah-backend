@@ -1,5 +1,6 @@
 package br.com.sinah.patient.model;
 
+import br.com.sinah.bed.model.BedModel;
 import br.com.sinah.department.model.DepartmentModel;
 import br.com.sinah.patient.enums.Gender;
 
@@ -46,17 +47,9 @@ public class PatientModel {
     @Column
     private String phone;
 
-    @ManyToOne
-    @JoinColumn(name = "department_uuid", nullable = false)
-    private DepartmentModel department;
-
-    @ManyToOne
-    @JoinColumn(name = "ward_uuid", nullable = false)
-    private WardModel ward;
-
-    @ManyToOne
-    @JoinColumn(name = "room_uuid", nullable = false)
-    private RoomModel room;
+    @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bed_uuid", nullable = false, referencedColumnName = "uuid")
+    private BedModel bed;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

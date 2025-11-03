@@ -19,4 +19,5 @@ public record NotificationRequestDTO(
         LocalDateTime notificationDate,
         UUID userUuid,
         Map<String, Object> additionalData,
-        LocalDateTime dueDate) {}
+        LocalDateTime dueDate) {
+}

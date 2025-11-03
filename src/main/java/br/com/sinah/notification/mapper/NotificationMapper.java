@@ -39,12 +39,12 @@ public class NotificationMapper {
     }
 
     public static NotificationModel toModel(
-        NotificationRequestDTO request,
-        WardModel ward,
-        PatientModel patient,
-        UserModel user,
-        DepartmentModel department,
-        RoomModel room) {
+            NotificationRequestDTO request,
+            WardModel ward,
+            PatientModel patient,
+            UserModel user,
+            DepartmentModel department,
+            RoomModel room) {
         NotificationModel model = new NotificationModel();
         model.setTitle(request.title());
         model.setDescription(request.description());
@@ -64,13 +64,13 @@ public class NotificationMapper {
     }
 
     public static NotificationModel toUpdate(
-        NotificationModel model,
-        WardModel ward,
-        PatientModel patient,
-        UserModel user,
-        DepartmentModel department,
-        RoomModel room,
-        NotificationRequestDTO request) {
+            NotificationModel model,
+            WardModel ward,
+            PatientModel patient,
+            UserModel user,
+            DepartmentModel department,
+            RoomModel room,
+            NotificationRequestDTO request) {
         model.setTitle(request.title());
         model.setDescription(request.description());
         model.setPriority(request.priority());

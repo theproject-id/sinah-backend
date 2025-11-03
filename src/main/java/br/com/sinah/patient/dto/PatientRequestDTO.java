@@ -12,6 +12,5 @@ public record PatientRequestDTO(
         String cpf,
         String address,
         String phone,
-        UUID departmentUuid,
-        UUID wardUuid,
-        UUID roomUuid) {}
+        UUID bedUuid) {
+}

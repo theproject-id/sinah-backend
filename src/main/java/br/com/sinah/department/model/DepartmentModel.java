@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "wards")
+@Table(name = "departments")
 public class DepartmentModel {
     @Column(unique = true, insertable = false, updatable = false, columnDefinition = "serial")
     private Long id;
@@ -38,5 +38,6 @@ public class DepartmentModel {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public DepartmentModel(UUID uuid) {}
+    public DepartmentModel(UUID uuid) {
+    }
 }

@@ -31,7 +31,7 @@ public class WardModel {
     private String description;
 
     @OneToMany
-    @JoinColumn(name = "Rooms", nullable = false)
+    @JoinColumn(name = "rooms", nullable = false)
     private List<RoomModel> rooms;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -40,5 +40,6 @@ public class WardModel {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public WardModel(UUID uuid) {}
+    public WardModel(UUID uuid) {
+    }
 }

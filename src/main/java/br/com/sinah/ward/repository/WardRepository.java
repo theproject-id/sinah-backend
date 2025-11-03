@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface WardRepository extends JpaRepository<WardModel, UUID> {}
+public interface WardRepository extends JpaRepository<WardModel, UUID> {
+}
