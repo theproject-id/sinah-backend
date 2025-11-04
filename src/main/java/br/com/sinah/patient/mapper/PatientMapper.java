@@ -25,7 +25,7 @@ public class PatientMapper {
                 model.getUpdatedAt());
     }
 
-    public static PatientModel toModel(PatientRequestDTO dto) {
+    public static PatientModel toModel(PatientRequestDTO dto,BedModel bed) {
         PatientModel model = new PatientModel();
         model.setFullName(dto.fullName());
         model.setGender(dto.gender());
@@ -33,10 +33,7 @@ public class PatientMapper {
         model.setCpf(dto.cpf());
         model.setAddress(dto.address());
         model.setPhone(dto.phone());
-
-        if (dto.bedUuid() != null) model.setBed(new BedModel(dto.bedUuid()));
-        if (dto.roomUuid() != null) model.setRoom(new RoomModel(dto.roomUuid()));
-
+        model.setBed(bed);
         model.setCreatedAt(LocalDateTime.now());
         model.setUpdatedAt(LocalDateTime.now());
         return model;
@@ -49,14 +46,6 @@ public class PatientMapper {
         model.setCpf(dto.cpf());
         model.setAddress(dto.address());
         model.setPhone(dto.phone());
-
-        if (dto.departmentUuid() != null) model.setDepartment(new DepartmentModel(dto.departmentUuid()));
-        else model.setDepartment(null);
-        if (dto.wardUuid() != null) model.setWard(new WardModel(dto.wardUuid()));
-        else model.setWard(null);
-        if (dto.roomUuid() != null) model.setRoom(new RoomModel(dto.roomUuid()));
-        else model.setRoom(null);
-
         model.setUpdatedAt(LocalDateTime.now());
         return model;
     }

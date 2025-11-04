@@ -1,4 +1,6 @@
 package br.com.sinah.room.dto;
 
-public record RoomRequestDTO(String name, String description) {
+import java.util.UUID;
+
+public record RoomRequestDTO(String name, String description, UUID wardUuid) {
 }

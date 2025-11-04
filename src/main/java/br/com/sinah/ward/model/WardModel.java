@@ -30,8 +30,7 @@ public class WardModel {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "rooms", nullable = false)
+    @OneToMany(mappedBy = "ward", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoomModel> rooms;
 
     @Column(name = "created_at", nullable = false, updatable = false)

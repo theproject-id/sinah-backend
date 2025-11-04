@@ -6,6 +6,9 @@ import br.com.sinah.room.dto.RoomResponseDTO;
 import br.com.sinah.room.mapper.RoomMapper;
 import br.com.sinah.room.repository.RoomRepository;
 
+import br.com.sinah.ward.repository.WardRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +18,11 @@ import java.util.UUID;
 public class RoomService {
 
     private final RoomRepository roomRepository;
+    private final WardRepository wardRepository;
 
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, WardRepository wardRepository) {
         this.roomRepository = roomRepository;
+        this.wardRepository = wardRepository;
     }
 
     public List<RoomResponseDTO> findAll() {
@@ -29,8 +34,9 @@ public class RoomService {
         return RoomMapper.toDTO(find);
     }
 
-    public RoomResponseDTO create(RoomRequestDTO ward) {
-        var save = roomRepository.save(RoomMapper.toModel(ward));
+    public RoomResponseDTO create(RoomRequestDTO room) {
+        var ward = this.wardRepository.findById(room.wardUuid()).orElseThrow(() -> new NotFoundException("Ward not found"));
+        var save = roomRepository.save(RoomMapper.toModel(room,ward));
         return RoomMapper.toDTO(save);
     }
 

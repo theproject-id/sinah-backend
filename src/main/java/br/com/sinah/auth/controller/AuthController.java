@@ -7,6 +7,8 @@ import br.com.sinah.auth.service.AuthService;
 import br.com.sinah.auth.service.RefreshTokenService;
 import br.com.sinah.user.dto.UserDTO;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(name = "Autenticação", description = "Gerenciamento de autenticação de usuarios")
 public class AuthController {
 
     private final AuthService authService;
@@ -24,7 +27,7 @@ public class AuthController {
         this.authService = authService;
         this.refreshTokenService = refreshTokenService;
     }
-
+    @Operation(summary = "Logis de usuário")
     @PostMapping(
             value = "/login",
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -33,13 +36,13 @@ public class AuthController {
         var response = authService.login(loginRequestDTO);
         return ResponseEntity.ok(response);
     }
-
+    @Operation(summary = "Renovar token de usuário")
     @PostMapping(value = "/refresh-token", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RefreshTokenResponseDTO> refresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
         var response = refreshTokenService.refreshToken(refreshToken);
         return ResponseEntity.ok(response);
     }
-
+    @Operation(summary = "Dados do usuário logado")
     @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> me() {
         var response = authService.authenticate();

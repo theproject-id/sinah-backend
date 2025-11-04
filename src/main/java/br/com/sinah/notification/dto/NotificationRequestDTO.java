@@ -12,12 +12,9 @@ public record NotificationRequestDTO(
         String description,
         PriorityLevel priority,
         UUID patientId,
-        NotificationType notificationType,
-        UUID departmentId,
-        UUID wardId,
-        UUID roomId,
-        LocalDateTime notificationDate,
         UUID userUuid,
+        NotificationType notificationType,
+        LocalDateTime notificationDate,
         Map<String, Object> additionalData,
         LocalDateTime dueDate) {
 }

@@ -18,7 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/beds")
 @AllArgsConstructor
-@Tag(name = "Beds", description = "Gerenciamento de leitos hospitalares")
+@Tag(name = "Leitos", description = "Gerenciamento de leitos hospitalares")
 public class BedController {
 
     private final BedService bedService;

@@ -1,6 +1,7 @@
 package br.com.sinah.room.model;
 
 import br.com.sinah.bed.model.BedModel;
+import br.com.sinah.ward.model.WardModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,11 @@ public class RoomModel {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "beds", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ward_uuid", nullable = false, referencedColumnName = "uuid")
+    private WardModel ward;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BedModel> beds;
 
     @Column(name = "created_at", nullable = false, updatable = false)

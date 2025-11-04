@@ -28,7 +28,15 @@ public class SecurityConfig {
 
     @Value("${br.com.sinah.application.webapp-origins}")
     private String allowedOrigin;
-
+  /*  @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest()
+                        .permitAll()).build();
+    }*/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
@@ -62,8 +70,20 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/patients/**")
                         .authenticated()
 
+                        // Departments routes
+                        .requestMatchers("/api/v1/departments/**")
+                        .authenticated()
+
                         // Wards routes
                         .requestMatchers("/api/v1/wards/**")
+                        .authenticated()
+
+                        // Rooms routes
+                        .requestMatchers("/api/v1/rooms/**")
+                        .authenticated()
+
+                        // Beds routes
+                        .requestMatchers("/api/v1/beds/**")
                         .authenticated()
 
                         // Any other request

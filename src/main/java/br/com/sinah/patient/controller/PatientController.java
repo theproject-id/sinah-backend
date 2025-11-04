@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Pacientes", description = "Operações relacionadas a pacientes")
+@Tag(name = "Patients", description = "Operações relacionadas a pacientes")
 @AllArgsConstructor
 @RequestMapping("/api/v1/patients")
 @RestController
