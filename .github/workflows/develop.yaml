@@ -1,0 +1,41 @@
+name: Development build
+
+on:
+  push:
+    paths:
+      - "*"
+    branches:
+      - "develop"
+  workflow_dispatch:
+
+env:
+  IMAGE_PROFILE: "dev"
+
+jobs:
+  release-develop:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Set up checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: corretto
+          java-version: 21
+          cache: maven
+
+      - name: Run tests
+        run: make test
+
+      - name: Build Image
+        run: make image-build
+
+      - name: GitHub (GHCR) login
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: GitHub (GHCR) push
+        run: make image-publish
