@@ -27,7 +27,7 @@ image-build: ## Build the project image
 	@docker build . -t $(IMAGE_NAME):$(IMAGE_VERSION)$(if $(IMAGE_PROFILE),-$(IMAGE_PROFILE))
 
 image-publish: ## Publish the project image
-	@docker push . -t $(IMAGE_NAME):$(IMAGE_VERSION)$(if $(IMAGE_PROFILE),-$(IMAGE_PROFILE))
+	@docker push $(IMAGE_NAME):$(IMAGE_VERSION)$(if $(IMAGE_PROFILE),-$(IMAGE_PROFILE))
 
 ## Migration
 
