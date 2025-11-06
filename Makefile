@@ -4,6 +4,7 @@ COMPOSE_PATH=./compose.yml
 MIGRATION_PATH=./src/main/resources/db/migrations
 
 IMAGE_VERSION := $(shell git rev-parse --short HEAD)
+IMAGE_NAME=ghcr.io/theproject-id/sinah-backend
 
 # Colors
 RED     := $(shell tput -Txterm setaf 1)
@@ -23,7 +24,10 @@ test:
 ## Build
 
 image-build: ## Build the project image
-	@docker build . -t ghcr.io/theproject-id/sinah-backend:$(IMAGE_VERSION)
+	@docker build . -t $(IMAGE_NAME):$(IMAGE_VERSION)$(if $(IMAGE_PROFILE),-$(IMAGE_PROFILE))
+
+image-publish: ## Publish the project image
+	@docker push . -t $(IMAGE_NAME):$(IMAGE_VERSION)$(if $(IMAGE_PROFILE),-$(IMAGE_PROFILE))
 
 ## Migration
 
